@@ -3,6 +3,16 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   background: #f5f7fa;
   color: #333;
+  font-size: 16px;
+  line-height: 1.6; /* 全体の行間を広げて読みやすく */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0 20px; /* 小さめの左右スペースを常に確保 */
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 header {
@@ -12,6 +22,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 header h1 {
@@ -26,6 +37,7 @@ nav a {
   font-size: 14px;
 }
 
+/* ヒーロー部分 */
 .hero {
   background: url("https://raw.githubusercontent.com/rasutoma/sonmasayosi/refs/heads/main/409811.jpg") center/cover no-repeat;
   color: white;
@@ -44,11 +56,19 @@ nav a {
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
+/* 共通のコンテンツ幅を制限して読みやすくする */
+.main-container, .about, .links {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* リンクカード群 */
 .links {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  max-width: 1000px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -86,6 +106,43 @@ nav a {
   color: #1e90ff;
 }
 
+/* セクション内テキストの調整 */
+.about h2 {
+  font-size: 28px;
+  margin-top: 0;
+}
+
+.about h3 {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.about p, .about li, .about dd {
+  font-size: 16px;
+  line-height: 1.8; /* 行間を広めにして詰まり感を解消 */
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.about ul {
+  padding-left: 1.15em;
+}
+
+.about ul li {
+  margin-bottom: 8px;
+}
+
+/* 定義リストの見た目向上 */
+.about dl dt {
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.about dl dd {
+  margin: 6px 0 12px 0;
+}
+
+/* フッター */
 footer {
   background: #0a3d62;
   color: white;
@@ -93,4 +150,136 @@ footer {
   padding: 30px 20px;
   margin-top: 60px;
   font-size: 14px;
+}
+
+/* -------------------------
+   モバイル（小さい画面）調整
+   ------------------------- */
+@media (max-width: 900px) {
+  header {
+    padding: 16px 20px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  nav a {
+    font-size: 15px;
+    margin-left: 12px;
+  }
+
+  .hero {
+    padding: 80px 16px;
+  }
+
+  .hero h2 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .main-container, .about, .links {
+    padding: 18px;
+  }
+
+  .card img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0 12px; /* 小さめ左右マージンは残す */
+    font-size: 16px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav a {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 12px;
+    font-size: 15px;
+  }
+
+  .hero {
+    padding: 56px 12px;
+    background-position: center top;
+  }
+
+  .hero h2 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  /* セクションをカード風にして読みやすく */
+  .about {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+    padding: 18px;
+  }
+
+  .about h2 {
+    font-size: 20px;
+  }
+
+  .about h3 {
+    font-size: 16px;
+  }
+
+  .about p, .about li, .about dd {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .links {
+    gap: 18px;
+    padding: 0;
+    margin: 28px auto;
+  }
+
+  .card {
+    border-radius: 10px;
+  }
+
+  .card img {
+    height: 120px;
+  }
+
+  footer {
+    padding: 20px 12px;
+    font-size: 13px;
+  }
+}
+
+/* アクセシビリティ微調整: リンクのフォーカスと大きめタップ領域 */
+a, button {
+  outline: none;
+}
+
+a:focus, button:focus {
+  box-shadow: 0 0 0 3px rgba(30,144,255,0.2);
+  border-radius: 6px;
+}
+
+/* リンクのタップしやすさを向上 */
+nav a, .card a {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
